@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "format": "biome check --write ."
+    "format": "biome check --write .",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev"
   },
   "keywords": [],
   "author": "",
@@ -14,10 +16,12 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.1",
     "@types/node": "22.5.5",
+    "prisma": "5.19.1",
     "tsx": "4.19.1",
     "typescript": "5.6.2"
   },
   "dependencies": {
+    "@prisma/client": "5.19.1",
     "fastify": "5.0.0"
   }
 }

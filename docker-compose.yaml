@@ -1,0 +1,13 @@
+name: deverse-api
+
+services:
+  pg:
+    image: bitnami/postgresql:latest
+    container_name: deverse-api-pg
+    restart: always
+    environment:
+      POSTGRESQL_USERNAME: deverse
+      POSTGRESQL_PASSWORD: secret
+      POSTGRESQL_DATABASE: deverse_db
+    ports:
+      - 5432:5432
