@@ -1,5 +1,6 @@
 import fastify from "fastify";
 import jwt from "./config/jwt";
+import { profileRoutes } from "./routes/profiles";
 import { userRoutes } from "./routes/users";
 
 const app = fastify({
@@ -9,6 +10,7 @@ const app = fastify({
 app.register(jwt);
 
 app.register(userRoutes, { prefix: "/api" });
+app.register(profileRoutes, { prefix: "/api" });
 
 try {
   await app.listen({
