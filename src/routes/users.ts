@@ -1,3 +1,4 @@
+import { env } from "@/config/env";
 import { prisma } from "@/config/prisma";
 import bcrypt from "bcryptjs";
 import type { FastifyInstance } from "fastify";
@@ -34,7 +35,7 @@ export async function userRoutes(app: FastifyInstance) {
       throw new Error("User already exists");
     }
 
-    const passwordHashed = await bcrypt.hash(password, 7);
+    const passwordHashed = await bcrypt.hash(password, env.HASH_SALT);
 
     await prisma.user.create({
       data: {

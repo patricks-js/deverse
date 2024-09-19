@@ -1,4 +1,5 @@
 import fastify from "fastify";
+import { env } from "./config/env";
 import jwt from "./config/jwt";
 import { profileRoutes } from "./routes/profiles";
 import { userRoutes } from "./routes/users";
@@ -14,7 +15,7 @@ app.register(profileRoutes, { prefix: "/api" });
 
 try {
   await app.listen({
-    port: 3000,
+    port: env.PORT,
     host: "0.0.0.0",
   });
 } catch (error) {

@@ -1,11 +1,12 @@
 import type { FastifyReply, FastifyRequest } from "fastify";
 import fp from "fastify-plugin";
+import { env } from "./env";
 
 export default fp(async (app, opts) => {
   app.register(import("@fastify/jwt"), {
-    secret: "supersecret",
+    secret: env.JWT_SECRET,
     sign: {
-      expiresIn: "30m",
+      expiresIn: env.JWT_EXPIRES_IN,
     },
   });
 
