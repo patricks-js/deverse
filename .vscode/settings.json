@@ -10,5 +10,5 @@
   "[json][jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
   },
-  "cSpell.words": ["biomejs", "Deverse"]
+  "cSpell.words": ["biomejs", "Deverse", "fastify"]
 }
