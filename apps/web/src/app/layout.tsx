@@ -1,3 +1,4 @@
+import { QueryClientProvider } from "@/shared/query-client-provider";
 import { ThemeProvider } from "@/shared/theme-provider";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
@@ -20,7 +21,7 @@ export default function RootLayout({
         className={`${GeistSans.variable} ${GeistMono.variable} antialiased font-sans`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <QueryClientProvider>{children}</QueryClientProvider>
         </ThemeProvider>
       </body>
     </html>
