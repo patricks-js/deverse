@@ -3,8 +3,6 @@ import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 
 export async function profileRoutes(app: FastifyInstance) {
-  app.addHook("preHandler", app.authenticate);
-
   app.get("/profiles/:username", async (request, reply) => {
     const paramsSchema = z.object({
       username: z.string(),
@@ -35,72 +33,80 @@ export async function profileRoutes(app: FastifyInstance) {
     };
   });
 
-  app.post("/profiles/:username/follow", async (request, reply) => {
-    const paramsSchema = z.object({
-      username: z.string(),
-    });
+  app.post(
+    "/profiles/:username/follow",
+    { preHandler: [app.authenticate] },
+    async (request, reply) => {
+      const paramsSchema = z.object({
+        username: z.string(),
+      });
 
-    const { username } = paramsSchema.parse(request.params);
+      const { username } = paramsSchema.parse(request.params);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
-      select: {
-        id: true,
-      },
-    });
+      const user = await prisma.user.findUnique({
+        where: {
+          username,
+        },
+        select: {
+          id: true,
+        },
+      });
 
-    if (!user) {
-      throw new Error("User not found");
-    }
+      if (!user) {
+        throw new Error("User not found");
+      }
 
-    if (user.id === request.user.id) {
-      throw new Error("You can't follow yourself");
-    }
+      if (user.id === request.user.id) {
+        throw new Error("You can't follow yourself");
+      }
 
-    await prisma.user.update({
-      where: {
-        username,
-      },
-      data: {
-        following: true,
-      },
-    });
+      await prisma.user.update({
+        where: {
+          username,
+        },
+        data: {
+          following: true,
+        },
+      });
 
-    return reply.status(204).send();
-  });
+      return reply.status(204).send();
+    },
+  );
 
-  app.delete("/profiles/:username/unfollow", async (request, reply) => {
-    const paramsSchema = z.object({
-      username: z.string(),
-    });
+  app.delete(
+    "/profiles/:username/unfollow",
+    { preHandler: [app.authenticate] },
+    async (request, reply) => {
+      const paramsSchema = z.object({
+        username: z.string(),
+      });
 
-    const { username } = paramsSchema.parse(request.params);
+      const { username } = paramsSchema.parse(request.params);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        username,
-      },
-    });
+      const user = await prisma.user.findUnique({
+        where: {
+          username,
+        },
+      });
 
-    if (!user) {
-      throw new Error("User not found");
-    }
+      if (!user) {
+        throw new Error("User not found");
+      }
 
-    if (user.id === request.user.id) {
-      throw new Error("You can't follow yourself");
-    }
+      if (user.id === request.user.id) {
+        throw new Error("You can't follow yourself");
+      }
 
-    await prisma.user.update({
-      where: {
-        username,
-      },
-      data: {
-        following: false,
-      },
-    });
+      await prisma.user.update({
+        where: {
+          username,
+        },
+        data: {
+          following: false,
+        },
+      });
 
-    return reply.status(204).send();
-  });
+      return reply.status(204).send();
+    },
+  );
 }

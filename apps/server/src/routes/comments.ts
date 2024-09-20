@@ -3,44 +3,46 @@ import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 
 export async function commentRoutes(app: FastifyInstance) {
-  app.addHook("preHandler", app.authenticate);
+  app.post(
+    "/articles/:slug/comments",
+    { preHandler: [app.authenticate] },
+    async (request, reply) => {
+      const paramsSchema = z.object({
+        slug: z.string(),
+      });
 
-  app.post("/articles/:slug/comments", async (request, reply) => {
-    const paramsSchema = z.object({
-      slug: z.string(),
-    });
+      const { slug } = paramsSchema.parse(request.params);
 
-    const { slug } = paramsSchema.parse(request.params);
+      const article = await prisma.post.findUnique({
+        where: {
+          slug,
+        },
+        select: {
+          id: true,
+        },
+      });
 
-    const article = await prisma.post.findUnique({
-      where: {
-        slug,
-      },
-      select: {
-        id: true,
-      },
-    });
+      if (!article) {
+        throw new Error("Article not found");
+      }
 
-    if (!article) {
-      throw new Error("Article not found");
-    }
+      const bodySchema = z.object({
+        body: z.string(),
+      });
 
-    const bodySchema = z.object({
-      body: z.string(),
-    });
+      const { body } = bodySchema.parse(request.body);
 
-    const { body } = bodySchema.parse(request.body);
+      await prisma.comment.create({
+        data: {
+          body,
+          authorId: request.user.id,
+          postId: article.id,
+        },
+      });
 
-    await prisma.comment.create({
-      data: {
-        body,
-        authorId: request.user.id,
-        postId: article.id,
-      },
-    });
-
-    return reply.status(201).send();
-  });
+      return reply.status(201).send();
+    },
+  );
 
   app.get("/articles/:slug/comments", async (request, reply) => {
     const paramsSchema = z.object({
@@ -89,47 +91,51 @@ export async function commentRoutes(app: FastifyInstance) {
     };
   });
 
-  app.delete("/articles/:slug/comments/:id", async (request, reply) => {
-    const paramsSchema = z.object({
-      slug: z.string(),
-      id: z.string(),
-    });
+  app.delete(
+    "/articles/:slug/comments/:id",
+    { preHandler: [app.authenticate] },
+    async (request, reply) => {
+      const paramsSchema = z.object({
+        slug: z.string(),
+        id: z.string(),
+      });
 
-    const { slug, id } = paramsSchema.parse(request.params);
+      const { slug, id } = paramsSchema.parse(request.params);
 
-    const article = await prisma.post.findUnique({
-      where: {
-        slug,
-      },
-      select: {
-        id: true,
-      },
-    });
+      const article = await prisma.post.findUnique({
+        where: {
+          slug,
+        },
+        select: {
+          id: true,
+        },
+      });
 
-    if (!article) {
-      throw new Error("Article not found");
-    }
+      if (!article) {
+        throw new Error("Article not found");
+      }
 
-    const comment = await prisma.comment.findUnique({
-      where: {
-        id,
-      },
-    });
+      const comment = await prisma.comment.findUnique({
+        where: {
+          id,
+        },
+      });
 
-    if (!comment) {
-      throw new Error("Comment not found");
-    }
+      if (!comment) {
+        throw new Error("Comment not found");
+      }
 
-    if (comment.authorId !== request.user.id) {
-      throw new Error("You can't delete other people's comments");
-    }
+      if (comment.authorId !== request.user.id) {
+        throw new Error("You can't delete other people's comments");
+      }
 
-    await prisma.comment.delete({
-      where: {
-        id,
-      },
-    });
+      await prisma.comment.delete({
+        where: {
+          id,
+        },
+      });
 
-    return reply.status(204).send();
-  });
+      return reply.status(204).send();
+    },
+  );
 }
