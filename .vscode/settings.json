@@ -6,6 +6,9 @@
       "source.organizeImports": "explicit"
     }
   },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "[json][jsonc]": {
     "editor.defaultFormatter": "biomejs.biome"
