@@ -54,13 +54,14 @@ export async function articlesRoutes(app: FastifyInstance) {
       favorited: z.coerce.boolean().optional(),
     });
 
-    const { page, author, tag } = querySchema.parse(request.query);
+    let { page, author, tag } = querySchema.parse(request.query);
 
+    page = page ? page : 0;
     const limit = 5;
     const total = await prisma.post.count();
     const articles = await prisma.post.findMany({
       take: limit,
-      skip: page ? page * limit : 0,
+      skip: page * limit,
       orderBy: {
         createdAt: "desc", // latest first
       },
