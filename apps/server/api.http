@@ -1,0 +1,80 @@
+@baseUrl = http://localhost:3333/api
+@authHeader = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY1MmRhYmJhLTI4YzQtNGQyNy1iMGU4LWM0MzgzZDEzMWE2OSIsImlhdCI6MTcyNjc5ODE0MiwiZXhwIjoxNzI2Nzk4NzQyfQ.IZL-3cNhF190hBjLOtB6SXlSKmaboReg6rnURRd66ok
+
+POST {{baseUrl}}/users/register
+content-type: application/json
+
+{
+    "name": "Caetano Veloso",
+    "username": "caetaninho",
+    "email": "caetano@deverse.dev",
+    "password": "123456"
+}
+
+###
+
+POST {{baseUrl}}/users/login
+content-type: application/json
+
+{
+    "email": "lucas@deverse.dev",
+    "password": "123456"
+}
+
+###
+GET {{baseUrl}}/users
+Authorization: {{authHeader}}
+
+###
+PUT {{baseUrl}}/users/me
+content-type: application/json
+Authorization: {{authHeader}}
+
+{
+    "username": "plucas"
+}
+
+###
+GET {{baseUrl}}/profiles/plucas
+Authorization: {{authHeader}}
+
+###
+POST {{baseUrl}}/profiles/plucas/follow
+Authorization: {{authHeader}}
+
+###
+DELETE {{baseUrl}}/profiles/plucas/unfollow
+Authorization: {{authHeader}}
+
+###
+
+GET {{baseUrl}}/articles?page=2
+Authorization: {{authHeader}}
+
+###
+POST {{baseUrl}}/articles
+content-type: application/json
+Authorization: {{authHeader}}
+
+{
+    "title": "Rust is killing my brain",
+    "description": "Article description",
+    "content": "This is the content of the article",
+    "tags": ["rust", "programming", "low-level"]
+}
+
+###
+GET {{baseUrl}}/articles/feed
+Authorization: {{authHeader}}
+
+###
+GET {{baseUrl}}/articles/the-power-of-go
+Authorization: {{authHeader}}
+
+###
+POST {{baseUrl}}/articles/the-power-of-go/favorite
+Authorization: {{authHeader}}
+
+###
+GET {{baseUrl}}/articles/tags
+Authorization: {{authHeader}}

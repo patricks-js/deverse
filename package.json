@@ -1,33 +1,25 @@
 {
   "name": "deverse",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/server.js",
-  "type": "module",
+  "description": "A free and open source platform for developers to share their knowledge and experiences.",
+  "private": true,
   "scripts": {
-    "dev": "tsx watch --env-file .env src/server.ts",
-    "format": "biome check --write .",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:studio": "prisma studio"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "format": "biome check --write ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@biomejs/biome": "1.9.1",
-    "@types/bcryptjs": "2.4.6",
-    "@types/node": "22.5.5",
-    "prisma": "5.19.1",
-    "tsx": "4.19.1",
-    "typescript": "5.6.2"
+    "turbo": "2.1.2"
   },
-  "dependencies": {
-    "@fastify/jwt": "9.0.0",
-    "@prisma/client": "5.19.1",
-    "bcryptjs": "2.4.3",
-    "fastify": "5.0.0",
-    "fastify-plugin": "5.0.0",
-    "zod": "3.23.8"
+  "author": {
+    "name": "Lucas Patrick",
+    "url": "https://github.com/patricks-js"
+  },
+  "license": "Apache-2.0",
+  "packageManager": "pnpm@9.10.0",
+  "engines": {
+    "node": ">=20"
   }
 }

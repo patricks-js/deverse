@@ -1,0 +1,7 @@
+{
+  "name": "@deverse/tsconfig",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  }
+}
