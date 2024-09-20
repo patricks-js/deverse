@@ -1,6 +1,7 @@
 import fastify from "fastify";
 import { env } from "./config/env";
 import jwt from "./config/jwt";
+import { articlesRoutes } from "./routes/articles";
 import { profileRoutes } from "./routes/profiles";
 import { userRoutes } from "./routes/users";
 
@@ -12,6 +13,7 @@ app.register(jwt);
 
 app.register(userRoutes, { prefix: "/api" });
 app.register(profileRoutes, { prefix: "/api" });
+app.register(articlesRoutes, { prefix: "/api" });
 
 try {
   await app.listen({
