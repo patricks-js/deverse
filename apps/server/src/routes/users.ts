@@ -90,7 +90,7 @@ export async function userRoutes(app: FastifyInstance) {
   });
 
   app.get(
-    "/users",
+    "/users/me",
     { preValidation: [app.authenticate] },
     async (request, reply) => {
       const user = await prisma.user.findUnique({
