@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} antialiased font-sans`}
+        className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen font-sans`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <QueryClientProvider>{children}</QueryClientProvider>
