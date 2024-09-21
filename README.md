@@ -26,6 +26,19 @@ Deverse is a blogging platform focused in the tech community that allows users t
 - PostgreSQL
 - TypeScript
 
+### Monorepo
+
+The project is organized into a monorepo, with each app (server and web) being a separate package within the monorepo. You can find the packages in the `/apps` directory.
+
+Some packages are shared across apps, such as the `tsconfig` package, are located in the `/packages` directory.
+
+- See the server docs: [README.md](/apps/server/README.md)
+- See the web docs: [README.md](/apps/web/README.md)
+
+### Next.js
+
+Next.js is used for the web app, providing a fast and efficient development experience.
+
 ## Contributing
 
 Contributions are welcome!
