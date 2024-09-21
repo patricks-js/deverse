@@ -35,10 +35,6 @@ Some packages are shared across apps, such as the `tsconfig` package, are locate
 - See the server docs: [README.md](/apps/server/README.md)
 - See the web docs: [README.md](/apps/web/README.md)
 
-### Next.js
-
-Next.js is used for the web app, providing a fast and efficient development experience.
-
 ## Contributing
 
 Contributions are welcome!
