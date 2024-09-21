@@ -36,9 +36,6 @@ importers:
         specifier: 3.23.8
         version: 3.23.8
     devDependencies:
-      '@deverse/env':
-        specifier: workspace:*
-        version: link:../../packages/env
       '@deverse/tsconfig':
         specifier: workspace:*
         version: link:../../packages/tsconfig
@@ -123,6 +120,18 @@ importers:
         version: 3.4.12
       typescript:
         specifier: ^5
+        version: 5.6.2
+
+  packages/core:
+    devDependencies:
+      '@deverse/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@types/node':
+        specifier: 22.5.5
+        version: 22.5.5
+      typescript:
+        specifier: 5.6.2
         version: 5.6.2
 
   packages/env:

@@ -24,9 +24,9 @@ export type FetchArticlesResponse = {
   items: Article[];
 };
 
-export async function fetchArticles() {
-  // const query = page > 0 ? `?page=${page}` : "";
-  const response = await fetch("http://localhost:3333/api/articles");
+export async function fetchArticles(page = 0) {
+  const query = page > 0 ? `?page=${page}` : "";
+  const response = await fetch(`http://localhost:3333/api/articles${query}`);
   const data = await response.json();
 
   return data as FetchArticlesResponse;
