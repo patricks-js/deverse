@@ -1,9 +1,10 @@
-import { QueryClientProvider } from "@/shared/query-client-provider";
-import { ThemeProvider } from "@/shared/theme-provider";
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import "./globals.css";
+
+import { cn } from "@/lib/utils";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,13 +18,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen font-sans`}
-      >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryClientProvider>{children}</QueryClientProvider>
-        </ThemeProvider>
-      </body>
+      <ClerkProvider>
+        <body
+          className={cn(
+            "antialiased min-h-screen font-sans",
+            GeistSans.variable,
+            GeistMono.variable,
+          )}
+        >
+          {children}
+        </body>
+      </ClerkProvider>
     </html>
   );
 }
