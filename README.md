@@ -18,13 +18,13 @@ Deverse is a blogging platform focused in the tech community that allows users t
 
 ## App Architecture
 
-- Monorepo (using turborepo)
-- Next.js
-- Tailwind CSS
-- Node.js
-- Prisma
-- PostgreSQL
-- TypeScript
+- [Monorepo](https://monorepo.tools/) (using [turborepo](https://turbo.build/repo/docs))
+- [Next.js](https://nextjs.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Node.js](https://nodejs.org/en)
+- [PrismaORM](https://www.prisma.io/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [TypeScript](https://www.typescriptlang.org/)
 
 ### Monorepo
 
@@ -32,8 +32,8 @@ The project is organized into a monorepo, with each app (server and web) being a
 
 Some packages are shared across apps, such as the `tsconfig` package, are located in the `/packages` directory.
 
-- See the server docs: [README.md](/apps/server/README.md)
-- See the web docs: [README.md](/apps/web/README.md)
+- See the server requirements: [README.md](/apps/server/README.md)
+- See the web requirements: [README.md](/apps/web/README.md)
 
 ## Philosophy
 
