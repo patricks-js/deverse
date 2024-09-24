@@ -21,7 +21,7 @@ Deverse Web comes with a well-organized routing system to keep the user flow sea
   - Pulls articles based on Feed, Global, or Tag filters.
   - Pagination for easier navigation through articles.
 
-- **Sign In / Sign Up pages** (URL: `/login`, `/register`)
+- **Sign In / Sign Up pages** (URL: `/sign-in`, `/sign-up`)
   - Handles user authentication using JWT tokens (stored in localStorage).
   - Easily switchable to session or cookie-based authentication.
 
