@@ -1,3 +1,4 @@
+import { UserRegisterForm } from "@/components/forms/user-register-form";
 import { Button } from "@/components/ui/button";
 import { Command } from "lucide-react";
 import Link from "next/link";
@@ -26,7 +27,7 @@ export default function SignUpPage() {
               Enter your email below to create your account
             </p>
           </div>
-          {/* <UserAuthForm /> */}
+          <UserRegisterForm />
           {/* <p className="px-8 text-center text-sm text-muted-foreground">
             By clicking continue, you agree to our{" "}
             <Link

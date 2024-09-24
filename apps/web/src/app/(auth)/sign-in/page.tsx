@@ -1,3 +1,4 @@
+import { UserLoginForm } from "@/components/forms/user-login-form";
 import { Button } from "@/components/ui/button";
 import { Command } from "lucide-react";
 import Link from "next/link";
@@ -22,7 +23,7 @@ export default function SignInPage() {
             Enter your email to sign in to your account
           </p>
         </div>
-        {/* <UserAuthForm /> */}
+        <UserLoginForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/sign-up"
