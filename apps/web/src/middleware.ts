@@ -1,5 +1,7 @@
 const privateRoutes = ["/settings", "/editor", "/editor/*"];
 
+export function middleware() {}
+
 export const config = {
   matcher: [
     // Skip Next.js internals and all static files, unless found in search params
