@@ -1,5 +1,5 @@
+import { env } from "@deverse/env/server";
 import fastify from "fastify";
-import { env } from "./config/env";
 import jwt from "./config/jwt";
 import { articlesRoutes } from "./routes/articles";
 import { profileRoutes } from "./routes/profiles";

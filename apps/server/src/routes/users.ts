@@ -1,5 +1,5 @@
-import { env } from "@/config/env";
 import { prisma } from "@/config/prisma";
+import { env } from "@deverse/env/server";
 import bcrypt from "bcryptjs";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";

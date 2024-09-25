@@ -1,6 +1,6 @@
+import { env } from "@deverse/env/server";
 import type { FastifyReply, FastifyRequest } from "fastify";
 import fp from "fastify-plugin";
-import { env } from "./env";
 
 export default fp(async (app, opts) => {
   app.register(import("@fastify/jwt"), {
