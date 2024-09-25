@@ -1,9 +1,9 @@
-import type { ReactNode } from "react";
+import type { Children } from "@/types/children";
 import { QueryClientProvider } from "./query-client-provider";
 import SessionProvider from "./session-provider";
 import { ThemeProvider } from "./theme-provider";
 
-export function SharedProviders({ children }: { children: ReactNode }) {
+export function SharedProviders({ children }: Children) {
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <QueryClientProvider>
