@@ -1,9 +1,10 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { ContinueWithSocialLogin } from "../continue-with-social-login";
+import { SocialLogin } from "../social-login";
 import { Button } from "../ui/button";
 import {
   Form,
@@ -25,6 +26,8 @@ export const formSchema = z.object({
 export type FormData = z.infer<typeof formSchema>;
 
 export function UserRegisterForm() {
+  const [isPending, startTransition] = useTransition();
+
   const form = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,7 +39,10 @@ export function UserRegisterForm() {
   });
 
   function onSubmit(values: FormData) {
-    console.log(values);
+    startTransition(() => {
+      console.log("Submitting...");
+      console.log(values);
+    });
   }
 
   return (
@@ -96,13 +102,13 @@ export function UserRegisterForm() {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-full mt-2">
+            <Button type="submit" className="w-full mt-2" disabled={isPending}>
               Register
             </Button>
           </div>
         </form>
       </Form>
-      <ContinueWithSocialLogin />
+      <SocialLogin startTransition={startTransition} isPending={isPending} />
     </div>
   );
 }

@@ -5,10 +5,10 @@ import { sharedEnv } from "./shared";
 export const env = createEnv({
   extends: [sharedEnv],
   server: {
-    NEXTAUTH_GITHUB_CLIENT_ID: z.string(),
-    NEXTAUTH_GITHUB_CLIENT_SECRET: z.string(),
-    NEXTAUTH_GOOGLE_CLIENT_ID: z.string(),
-    NEXTAUTH_GOOGLE_CLIENT_SECRET: z.string(),
+    AUTH_SECRET: z.string(),
+    AUTH_URL: z.string().url(),
+    AUTH_GITHUB_ID: z.string(),
+    AUTH_GITHUB_SECRET: z.string(),
   },
   client: {
     NEXT_PUBLIC_API_URL: z.string().url(),

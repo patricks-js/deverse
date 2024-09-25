@@ -1,4 +1,9 @@
-import { SquarePen, type LucideIcon, type LucideProps } from "lucide-react";
+import {
+  Loader,
+  SquarePen,
+  type LucideIcon,
+  type LucideProps,
+} from "lucide-react";
 import { GitHub } from "./github";
 import { Google } from "./google";
 
@@ -9,4 +14,5 @@ export const Icons = {
   google: Google,
   github: GitHub,
   editor: SquarePen,
+  loader: Loader,
 };
