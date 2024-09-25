@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { cn } from "@/lib/utils";
-import { QueryClientProvider } from "@/shared/query-client-provider";
-import { ThemeProvider } from "@/shared/theme-provider";
+import { SharedProviders } from "@/shared/shared-providers";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 
@@ -26,9 +25,7 @@ export default function RootLayout({
           GeistMono.variable,
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <QueryClientProvider>{children}</QueryClientProvider>
-        </ThemeProvider>
+        <SharedProviders>{children}</SharedProviders>
       </body>
     </html>
   );
