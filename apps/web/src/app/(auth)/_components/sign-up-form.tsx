@@ -1,11 +1,6 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { SocialLogin } from "../social-login";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,23 +8,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { signUpSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
+import { SocialLogin } from "./social-login";
 
-export const formSchema = z.object({
-  name: z.string().min(2),
-  username: z.string().min(2).max(50),
-  email: z.string().email(),
-  password: z.string().min(8),
-});
+export type FormData = z.infer<typeof signUpSchema>;
 
-export type FormData = z.infer<typeof formSchema>;
-
-export function UserRegisterForm() {
+export function SignUpForm() {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       name: "",
       username: "",

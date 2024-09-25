@@ -1,11 +1,6 @@
 "use client";
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { SocialLogin } from "../social-login";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,23 +8,24 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { signInSchema } from "@/lib/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTransition } from "react";
+import { useForm } from "react-hook-form";
+import type { z } from "zod";
+import { SocialLogin } from "./social-login";
 
-export const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-});
+type FormData = z.infer<typeof signInSchema>;
 
-type FormData = z.infer<typeof formSchema>;
-
-export function UserLoginForm() {
+export function SignInForm() {
   const [isPending, startTransition] = useTransition();
 
   const form = useForm<FormData>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(signInSchema),
     defaultValues: {
-      email: "",
+      username: "",
       password: "",
     },
   });
@@ -48,12 +44,12 @@ export function UserLoginForm() {
           <div>
             <FormField
               control={form.control}
-              name="email"
+              name="username"
               render={({ field }) => (
                 <FormItem className="">
-                  <FormLabel className="sr-only">Email</FormLabel>
+                  <FormLabel className="sr-only">Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="email@example.com" {...field} />
+                    <Input placeholder="johndoe" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

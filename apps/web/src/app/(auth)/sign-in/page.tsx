@@ -1,7 +1,7 @@
-import { UserLoginForm } from "@/components/forms/user-login-form";
 import { Button } from "@/components/ui/button";
 import { Command } from "lucide-react";
 import Link from "next/link";
+import { SignInForm } from "../_components/sign-in-form";
 
 export default function SignInPage() {
   return (
@@ -23,7 +23,7 @@ export default function SignInPage() {
             Enter your email to sign in to your account
           </p>
         </div>
-        <UserLoginForm />
+        <SignInForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
             href="/sign-up"

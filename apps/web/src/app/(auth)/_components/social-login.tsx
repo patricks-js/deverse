@@ -1,7 +1,7 @@
 import { signInAction } from "@/actions/sign-in-action";
+import { Icons } from "@/components/icons";
+import { Button } from "@/components/ui/button";
 import type { TransitionStartFunction } from "react";
-import { Icons } from "./icons";
-import { Button } from "./ui/button";
 
 type Props = {
   startTransition: TransitionStartFunction;
