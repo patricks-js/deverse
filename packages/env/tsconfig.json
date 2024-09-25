@@ -1,0 +1,7 @@
+{
+  "extends": "@deverse/tsconfig/base.json",
+  "compilerOptions": {
+    "moduleResolution": "Bundler"
+  },
+  "include": ["."]
+}
